@@ -30,14 +30,14 @@ void pos_callback(const nav_msgs::Odometry::ConstPtr& msg){
         double yaw = tf::getYaw(quat);
     ROS_INFO("机器人位置: x=%.2f, y=%.2f, z=%.2f | 偏航角: %.2f rad", x, y, z, yaw);
     geometry_msgs::Twist vel_cmd;
-if (ld_angle>0.5)
+if (ld_angle>0.3)
 {
-  if (x>=0.5)
+  if (x>=0.55)
     {
         vel_cmd.linear.x=0.0;
         vel_cmd.angular.x = 0.0;
         vel_cmd.angular.y = 0.0;
-        vel_cmd.angular.z = -0.2;
+        vel_cmd.angular.z = -0.4;
         if (yaw <= -1.5)
         {
             vel_cmd.angular.z=0;

@@ -8,7 +8,7 @@ int main(int argc,char **argv)
     ros::Publisher vel_pub =n.advertise<geometry_msgs::Twist>("/cmd_vel",10);
 
     geometry_msgs::Twist vel_msg;
-    vel_msg.linear.x = 0.1;
+    vel_msg.linear.x = 0;
     vel_msg.linear.y = 0;
     vel_msg.linear.z = 0;
     vel_msg.angular.x = 0;

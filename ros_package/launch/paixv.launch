@@ -1,0 +1,14 @@
+<launch>
+  <!-- 1. 指令融合节点（正常工作，无需修改） -->
+  <node name="cmd_vel_mux" pkg="topic_tools" type="mux" output="screen"
+        args="/cmd_vel /lidar_vel /pos_vel" />
+
+  <!-- 2. 激光雷达节点（高优先级：nice=-5，sudo 生效） -->
+  <exec cmd="sudo nice -n -5 rosrun ros_package lidar_node" output="screen" />
+
+  <!-- 3. 位置控制节点（低优先级：nice=10，无需 sudo） -->
+  <exec cmd="nice -n 10 rosrun ros_package position_node" output="screen" />
+
+  <!-- 备用节点（如需启用，按同样格式修改） -->
+  <!-- <exec cmd="rosrun ros_package pos_try_node" output="screen" /> -->
+</launch>
